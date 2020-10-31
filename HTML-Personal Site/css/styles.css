@@ -1,0 +1,27 @@
+  body {
+    background-color: #A16EFB;
+  }
+  hr{
+    border-style: none;
+    border-top-style: dotted;
+    border-color: blue;
+    border-width: 7px;
+    width: 7%;
+   }
+  .dpp{
+    height: 100px;
+    background-color: green;
+  }
+  .trisha:hover{
+    background-color: blue;
+  }
+  .dipti:hover{
+    background-color: green;
+    border-radius: 102%;
+  }
+  #please:hover{
+    background-color: yellow;
+  }
+  #heading{
+    color: pink;
+  }
