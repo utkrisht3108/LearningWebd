@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <title>To Do list</title>
+     <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+     <div class="box" id="heading">
+           <h1> <%= kindOfDay %> </h1>
+     </div>
+
+     <div class="box">
+           <% for(var i=0;i< newListItems.length ;i++){ %>
+          <div class="item">
+               <input type="checkbox">
+               <p> <%= newListItems[i] %> </p>
+          </div>
+           <% }%>
+
+          
+           <form action="/" method="post">
+               <input type="text" name="newItem" placeholder="Add Item" autocomplete="off">
+               <button type="Submit" name="button">+</button>
+          </form>
+
+     </div>
+</body>
+</html>   
