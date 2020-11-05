@@ -1,0 +1,210 @@
+//  ||  || |____|  //
+//  ||  ||   ||   // 
+//  \\__//   ||  // 
+#include<bits/stdc++.h>
+typedef long long int ll;
+typedef long double ld;
+#include <bitset>
+#define mp make_pair
+#define F first
+#define S second
+#define vll vector <ll>
+#define mll map <ll,ll>
+#define pb push_back
+#define pf push_front
+#define popf pop_front
+#define popb pop_back
+#define M 1000000007
+#define INT_BITS 32
+#define SIZE_INT sizeof(int) * 8
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define test ll t;cin>>(t);while(t--)
+#define all(v) v.begin(), v.end()
+#define rall(v) v.rbegin(), v.rend()
+
+#define f(a, b) for (ll i = a; i < b; i++)
+#define fr(a, b) for (ll j = a; j >= b; j--)
+#define fi(a, b) for (ll j = a; j < b; j++)
+#define fii(a, b) for (ll k = a; k < b; k++)
+#define forab(i,a,b,c) for(ll (i) = a ; (i) <= (b) ; (i)+=(c))
+
+using namespace std;
+void start()
+{
+    fast;
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+}
+
+/***********************************************************************************************************/
+char box[10] = {'0','1','2','3','4','5','6','7','8','9'};
+void move(ll player, ll num)
+{
+    if(player==1)
+        box[num]='X';
+    if(player==2)
+        box[num]='O';
+}
+void print()
+{
+    cout<<"\n\t";
+    f(1,10)
+    {
+        cout<<box[i];
+        if(i==9)
+            cout<<"\n\n";
+        else if(i%3==0)
+            cout<<"\n\t__|___|__\n\t";
+        else
+            cout<<" | ";
+    }
+}
+ll check()
+{
+        if(box[1]==box[2] && box[1]==box[3])
+        {
+            if(box[1]=='X')
+                return 1;
+            else
+                return 2;
+        }
+        else if(box[4]==box[5] && box[5]==box[6])
+        {
+            if(box[1]=='X')
+                return 1;
+            else
+                return 2;   
+        }     
+        else if(box[7]==box[8] && box[8]==box[9])
+        {
+            if(box[7]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else if(box[1]==box[4] && box[4]==box[7])
+        {
+            if(box[1]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else if(box[2]==box[5] && box[5]==box[8])
+        {
+            if(box[2]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else if(box[3]==box[6] && box[6]==box[9])
+        {
+            if(box[3]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else if(box[1]==box[5] && box[5]==box[9])
+        {
+            if(box[1]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else if(box[3]==box[5] && box[5]==box[7])
+        {
+            if(box[3]=='X')
+                return 1;
+            else
+                return 2;   
+        }
+        else 
+        return 0;
+}
+int main()
+{
+    pair<string,ll> player1,player2;
+    player1.S = 1;
+    player2.S = 2;
+    ll num,result,khatam=0,c=0,hogaya[10]={0};
+    
+    cout<<"\t\t TIC-TAC-TOE!! LET THE GAME BEGIN\n\t\t\t\t\tMADE BY- Utkrisht Sharma";
+    cout<<"\nENTER PLAYER1- ";
+    getline(cin,player1.F);
+    cout<<"\nENTER PLAYER2- ";
+    getline(cin,player2.F);
+    cout<<"\n\n";
+    print();
+    while(c!=9)
+    {
+        cout<<"\nPlease Enter your number "<<player1.F<<":- ";
+        cin>>num;
+        if(hogaya[num]==0)
+        {
+            c++;
+            hogaya[num]=1;
+        }
+        else
+        {
+            while(hogaya[num]==1)
+            {
+                cout<<"THIS BOX IS ALREADY CHECKED. TRY AGAIN\n";
+                cout<<"\nPlease Enter your number "<<player1.F<<":- ";
+                cin>>num;
+                if(hogaya[num]==0)
+                {
+                    hogaya[num]=1;
+                    c++;
+                    break;
+                }
+            }
+        }
+        move(player1.S,num);
+        print();
+        result = check();
+        if(result == 1)
+        {
+            cout<<"CONGRATULATIONS!! "<<player1.F<<". YOU HAVE WON!!!\nWHAT A LOSER "<<player2.F;
+            khatam=1;
+            break;
+        }
+        if(c==9 && khatam==0)
+        {
+            cout<<"IT'S A DRAW. BETTER LUCK NEXT TIME\n"<<player1.F<<" and "<<player2.F<<"\n";
+            break;
+        }
+        cout<<"Please Enter your number "<<player2.F<<":- ";
+        cin>>num;
+        if(hogaya[num]==0)
+        {
+            c++;
+            hogaya[num]=1;
+        }
+        else
+        {
+            while(hogaya[num]==1)
+            {
+                cout<<"THIS BOX IS ALREADY CHECKED. TRY AGAIN\n";
+                cout<<"\nPlease Enter your number "<<player1.F<<":- ";
+                cin>>num;
+                if(hogaya[num]==0)
+                {
+                    hogaya[num]=1;
+                    c++;
+                    break;
+                }
+            }
+        }
+        move(player2.S,num);
+        print();
+        result = check();
+        if(result==2)
+        {
+            cout<<"CONGRATULATIONS!! "<<player2.F<<". YOU HAVE WON!!!\nWHAT A LOSER "<<player1.F;
+            khatam=1;
+            break;
+        }
+    }
+    return 0;
+}
