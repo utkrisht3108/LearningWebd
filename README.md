@@ -1,7 +1,7 @@
 # LearningWebd
 
-Some Mini Projects.
+Some Mini Projects and few not so mini projects.
 
 Error 418
 
--AngelaYu 
+-AngelaYu && jonas.io
