@@ -8,6 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const app = express();
 
@@ -34,9 +35,17 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
 });
 mongoose.set('useCreateIndex', true);
 const userSchema = new mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: false,
+  },
+  username: {
+    type: String,
+    unique: false,
+  },
   password: String,
   googleId: String,
+  facebookId: String,
   secret: String,
 });
 
@@ -66,22 +75,53 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+      User.findOrCreate(
+        { username: profile.id, email: profile.emails[0].value, googleId: profile.id },
+        function (err, user) {
+          return cb(err, user);
+        }
+      );
     }
   )
 );
-
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FB_clientID,
+      clientSecret: process.env.FB_clientSecret,
+      callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+      profileFields: ['id', 'displayName', 'photos', 'email', 'gender', 'name'],
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      console.log(profile);
+      User.findOrCreate(
+        { username: profile.id, email: profile.emails[0].value, facebookId: profile.id },
+        function (err, user) {
+          return cb(err, user);
+        }
+      );
+    }
+  )
+);
 app.get('/', function (req, res) {
   res.render('home');
 });
 
 //google
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get(
   '/auth/google/secrets',
   passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/secrets');
+  }
+);
+
+//fb
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_friends'] }));
+app.get(
+  '/auth/facebook/secrets',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
   function (req, res) {
     res.redirect('/secrets');
   }
