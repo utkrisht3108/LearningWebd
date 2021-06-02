@@ -1,0 +1,35 @@
+<section class="py-2">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h1 class="display-3 mt-3 pt-5">
+        UTKRISHT KA PAISA
+        <p class="lead"> Paisa dedo meko</p>
+      </h1>
+      <form action="/charge" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="{{stripePublishableKey}}"
+          data-amount="500"
+          data-name="Utkrisht ka Paisa"
+          data-description="Dedo paisa bikhari ko"
+          data-image="/img/Utkrisht.jpg"
+          data-locale="auto"
+        >
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[0].style.display =
+          'none';
+        </script>
+        <button
+          type="submit"
+          class="btn btn-outline-dark text-white btn-lg"
+        >Purchase For 500rs</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img src="/img/book.png" alt="ut" class="img-fluid" />
+    </div>
+  </div>
+</section>
