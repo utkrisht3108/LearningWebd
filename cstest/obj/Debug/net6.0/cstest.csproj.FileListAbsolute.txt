@@ -1,0 +1,15 @@
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\cstest.exe
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\cstest.deps.json
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\cstest.runtimeconfig.json
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\cstest.dll
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\ref\cstest.dll
+C:\Users\admin\source\repos\cstest\bin\Debug\net6.0\cstest.pdb
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.AssemblyInfo.cs
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.dll
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\ref\cstest.dll
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.pdb
+C:\Users\admin\source\repos\cstest\obj\Debug\net6.0\cstest.genruntimeconfig.cache
